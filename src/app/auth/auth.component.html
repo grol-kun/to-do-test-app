@@ -1,0 +1,17 @@
+<div class="auth container">
+  <form [formGroup]="form" class="auth__form" (ngSubmit)="onAuthSubmit()">
+    <div class="mb-3">
+      <label for="identifier" class="form-label">Username</label>
+      <input type="text" class="form-control" id="identifier" formControlName="identifier" placeholder="Enter your username">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="remember" formControlName="remember">
+      <label class="form-check-label" for="remember">Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Login</button>
+  </form>
+</div>
