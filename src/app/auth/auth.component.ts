@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { AuthService } from './auth.service';
 
 @Component({
@@ -22,6 +24,7 @@ export class AuthComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private message: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -51,9 +54,8 @@ export class AuthComponent implements OnInit {
             // this.authService.setTokenToCookies(data.jwt);
           }
           this.router.navigate(['/']);
-        } else {
-          //TODO: Implement error message
-          console.warn('Error: ', data.error);
+        } else if (data.error) {
+          this.message.open(data.error, 'Close');
         }
       });
   }
