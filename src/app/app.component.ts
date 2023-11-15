@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { AuthComponent } from './auth/auth.component';
 
 @Component({
@@ -10,6 +12,9 @@ import { AuthComponent } from './auth/auth.component';
   imports: [
     CommonModule,
     RouterOutlet,
+
+    MatSnackBarModule,
+
     AuthComponent,
   ],
   templateUrl: './app.component.html',
