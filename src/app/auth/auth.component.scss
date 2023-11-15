@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: url(/assets/background.jpg) no-repeat center center;
+  background-size: contain;
+  background-blend-mode: multiply;
+}
+
+.auth {
+  width: 360px;
+  height: 276px;
+  margin: 0 auto;
+
+  &__form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    &__button {
+      height: 40px;
+      width: 100%;
+    }
+  }
+}
