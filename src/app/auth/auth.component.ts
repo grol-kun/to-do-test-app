@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -47,10 +47,9 @@ export class AuthComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         if (data.jwt) {
-          this.authService.setToken(data.jwt);
+          this.authService.setAuthenticated();
           if (remember) {
-            //TODO: Implement possibility to store jwt after reloading the app
-            // this.authService.setTokenToCookies(data.jwt);
+            this.authService.setTokenToCookies(data.jwt);
           }
           this.router.navigate(['/']);
         } else if (data.error) {
