@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2>Список задач</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()" class="mb-4">
+    <label for="task" class="form-label">Добавить задачу:</label>
+    <div class="input-group">
+      <input type="text" id="task" formControlName="newTask" class="form-control" />
+      <input type="date" formControlName="dueDate" class="form-control" [min]="minDate" />
+      <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">Добавить</button>
+    </div>
+  </form>
+
+  @for(task of tasks; track task.name) {
+  <div class="card mb-3">
+    <div class="card-body row g-3">
+      <app-task-card [task]="task" [index]="$index" (statusChanged)="changeStatus($event)"></app-task-card>
+      <button class="btn btn-danger mt-3" (click)="deleteTask($index)">Удалить</button>
+    </div>
+  </div>
+  } @empty {
+    <div class="alert alert-info mt-3"><h3>У Вас пока нет ни одной добавленной задачи...</h3></div>
+  }
+</div>

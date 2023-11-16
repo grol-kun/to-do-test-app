@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AuthComponent } from './auth/auth.component';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { AuthComponent } from './auth/auth.component';
     MatSnackBarModule,
 
     AuthComponent,
+    HomeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
