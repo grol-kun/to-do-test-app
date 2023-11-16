@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { loginInfo } from '../shared/models/interfaces/login-info';
-import { AuthorizationResponse } from '../shared/models/interfaces/authorization-response';
+import { loginInfo } from '../shared/models/interfaces/login-info.model';
+import { AuthorizationResponse } from '../shared/models/interfaces/authorization-response.model';
 
 const ADMIN = 'admin';
 
