@@ -1,0 +1,54 @@
+<div class="layout">
+  <header class="header row h-auto">
+    <div class="header__content float-lg-start">
+      <h1>Список задач</h1>
+    </div>
+  </header>
+
+  <div class="wrapper container-fluid row" [class.collapsed]="collapsed">
+    <aside
+      class="sidebar col"
+      [class.slide-out]="collapsed"
+      [class.slide-in]="!collapsed"
+    >
+      <div class="sidebar__wrapper">
+        <button (click)="toggleSidebar()" class="sidebar-button btn btn-primary mt-3">
+          <fa-icon [icon]="collapsed ? faArrowRight : faArrowLeft"></fa-icon>
+        </button>
+      </div>
+      <div class="sidebar__wrapper mt-3">
+        <button (pointerdown)="filter('expired')" class="sidebar-button btn btn-primary mt-3">
+          <div class="sidebar-button__content">
+            <div class="sidebar-button__content__inner">
+              <fa-icon [icon]="faXmark"/>
+              <span class="sidebar-button__content__inner__text">Просроченные</span>
+            </div>
+          </div>
+        </button>
+        <button (pointerdown)="filter('done')" class="sidebar-button btn btn-primary mt-3">
+          <div class="sidebar-button__content">
+            <div class="sidebar-button__content__inner">
+              <fa-icon [icon]="faCheck"/>
+              <span class="sidebar-button__content__inner__text">Выполненные</span>
+            </div>
+          </div>
+        </button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <footer class="footer row h-auto bg-secondary bg-gradient">
+    <div class="footer__wrapper float-lg-end">
+        <button (pointerdown)="filter('expired')" class="btn btn-primary">
+          <fa-icon [icon]="faXmark"/>
+        </button>
+        <button (pointerdown)="filter('done')" class="btn btn-primary">
+          <fa-icon [icon]="faCheck"/>
+        </button>
+    </div>
+  </footer>
+</div>
