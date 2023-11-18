@@ -15,9 +15,6 @@ import { HomeComponent } from './home/home.component';
     RouterOutlet,
 
     MatSnackBarModule,
-
-    AuthComponent,
-    HomeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

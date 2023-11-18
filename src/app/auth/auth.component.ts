@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
     private message: MatSnackBar,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.form = this.fb.group({
       identifier: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -34,12 +34,7 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  onAuthSubmit() {
+  public onAuthSubmit(): void {
     const { identifier, password, remember } = this.form.getRawValue();
 
     this.authService
@@ -47,14 +42,16 @@ export class AuthComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         if (data.jwt) {
-          this.authService.setAuthenticated();
-          if (remember) {
-            this.authService.setTokenToCookies(data.jwt);
-          }
+          this.authService.setTokenToCookies(data.jwt);
           this.router.navigate(['/']);
         } else if (data.error) {
           this.message.open(data.error, 'Close');
         }
       });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
