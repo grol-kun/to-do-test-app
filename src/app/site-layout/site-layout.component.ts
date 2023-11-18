@@ -1,8 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, faXmark, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+import { HomeComponent } from '../home/home.component';
+import { FilterType } from '../shared/models/enums/filter-type.enum';
 
 @Component({
   selector: 'app-site-layout',
@@ -12,9 +15,10 @@ import { faCheck, faXmark, faArrowLeft, faArrowRight } from '@fortawesome/free-s
   imports: [
     RouterOutlet,
     FontAwesomeModule,
+    HomeComponent,
   ],
 })
-export class SiteLayoutComponent implements OnInit {
+export class SiteLayoutComponent {
   public collapsed = false;
   public isFiltered = false;
 
@@ -23,24 +27,23 @@ export class SiteLayoutComponent implements OnInit {
   public faArrowLeft = faArrowLeft;
   public faArrowRight = faArrowRight;
 
-  constructor() {}
+  public FilterType = FilterType;
 
-  ngOnInit() {
-  }
+  public filterType: FilterType | null = null;
 
   @HostListener('document:pointerup', ['$event'])
-  public onPointerUp(event: PointerEvent) {
+  public onPointerUp(event: PointerEvent): void {
     if (this.isFiltered && event.button === 0) {
-      this.filter('');
+      this.filter(null);
     }
   }
 
-  public toggleSidebar() {
+  public toggleSidebar(): void {
     this.collapsed = !this.collapsed;
   }
 
-  public filter(text: string) {
-    this.isFiltered = !!text;
-    console.log(`Filter ${text}. Filtered: ${this.isFiltered}`);
+  public filter(filterType: FilterType | null): void {
+    this.isFiltered = !!filterType;
+    this.filterType = filterType;
   }
 }
