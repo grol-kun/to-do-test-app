@@ -8,7 +8,7 @@
     </div>
   </form>
 
-  @for(task of tasks | taskSort: minDate; track task.id) {
+  @for(task of tasks | taskSort: minDate | taskFilter: filterType; track task.id) {
   <div class="card mb-3">
     <div class="card-body row g-3">
       <app-task-card [task]="task" [index]="$index" (statusChanged)="changeStatus($event)"></app-task-card>

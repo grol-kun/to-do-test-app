@@ -17,7 +17,7 @@
         </button>
       </div>
       <div class="sidebar__wrapper mt-3">
-        <button (pointerdown)="filter('expired')" class="sidebar-button btn btn-primary mt-3">
+        <button (pointerdown)="filter(FilterType.EXPIRED)" class="sidebar-button btn btn-primary mt-3">
           <div class="sidebar-button__content">
             <div class="sidebar-button__content__inner">
               <fa-icon [icon]="faXmark"/>
@@ -25,7 +25,7 @@
             </div>
           </div>
         </button>
-        <button (pointerdown)="filter('done')" class="sidebar-button btn btn-primary mt-3">
+        <button (pointerdown)="filter(FilterType.DONE)" class="sidebar-button btn btn-primary mt-3">
           <div class="sidebar-button__content">
             <div class="sidebar-button__content__inner">
               <fa-icon [icon]="faCheck"/>
@@ -37,16 +37,16 @@
     </aside>
 
     <main class="content">
-      <router-outlet></router-outlet>
+      <app-home [filterType]="filterType"></app-home>
     </main>
   </div>
 
   <footer class="footer row h-auto bg-secondary bg-gradient">
     <div class="footer__wrapper float-lg-end">
-        <button (pointerdown)="filter('expired')" class="btn btn-primary">
+        <button (pointerdown)="filter(FilterType.EXPIRED)" class="btn btn-primary">
           <fa-icon [icon]="faXmark"/>
         </button>
-        <button (pointerdown)="filter('done')" class="btn btn-primary">
+        <button (pointerdown)="filter(FilterType.DONE)" class="btn btn-primary">
           <fa-icon [icon]="faCheck"/>
         </button>
     </div>

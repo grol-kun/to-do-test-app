@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { Task } from '../shared/models/interfaces/task.model';
-import { StorageService } from '../shared/services/storage.service';
 import { TaskCardComponent } from '../shared/components/task-card/task-card.component';
-import { TASKS_KEY } from '../shared/models/constants/app.constant';
+import { StorageService } from '../shared/services/storage.service';
 import { TaskSortPipe } from '../shared/pipes/task-sort.pipe';
+import { TaskFilterPipe } from '../shared/pipes/task-filter.pipe';
+
+import { Task } from '../shared/models/interfaces/task.model';
+import { TASKS_KEY } from '../shared/models/constants/app.constant';
+import { FilterType } from '../shared/models/enums/filter-type.enum';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +18,13 @@ import { TaskSortPipe } from '../shared/pipes/task-sort.pipe';
     ReactiveFormsModule,
     TaskCardComponent,
     TaskSortPipe,
+    TaskFilterPipe,
   ],
   standalone: true,
 })
 export class HomeComponent implements OnInit {
+  @Input() filterType: FilterType | null = null;
+
   taskForm!: FormGroup;
 
   tasks: Task[] = [];
