@@ -1,0 +1,139 @@
+.layout {
+  height: 100%;
+  background: url(../../assets/light-patterns.jpg) repeat center center;
+
+  .header {
+    &__content {
+      display: flex;
+      justify-content: center;
+      background: url(../../assets/subtle-light-patterns.jpg) repeat center center;
+    }
+  }
+
+  .wrapper {
+    height: 100%;
+    overflow-y: scroll !important;
+    display: flex;
+    justify-content: space-between;
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      background: url(../../assets/subtle-light-patterns.jpg) repeat center center;
+
+      &__wrapper {
+        .sidebar-button {
+          width: 100%;
+
+          &__content {
+            display: flex;
+            width: auto;
+            justify-content: center;
+
+            &__inner {
+              display: flex;
+              width: 80%;
+              align-items: center;
+              justify-content: space-between;
+            }
+          }
+        }
+      }
+    }
+
+    &.collapsed {
+      .sidebar {
+        max-width: 50px;
+        align-items: center;
+
+        &__wrapper {
+          min-width: 40px;
+
+          .sidebar-button {
+            &__content {
+              &__inner {
+                &__text {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .content {
+        width: 90%;
+      }
+    }
+
+    .content {
+      flex: 0 0 auto;
+      width: 75%;
+      margin-bottom: 35px;
+      background-size: contain;
+      background-blend-mode: multiply;
+    }
+  }
+  .footer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    height: 100%;
+
+    .wrapper {
+      height: 90%;
+      overflow-y: scroll !important;
+
+      .sidebar {
+        display: none;
+      }
+
+      .content {
+        flex: 0 0 auto;
+        width: 100% !important;
+        margin-bottom: 0;
+      }
+    }
+    .footer {
+      display: flex;
+
+      &__wrapper {
+        display: flex;
+
+        button {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-70%);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-out {
+  animation: slideOut 0.5s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-in;
+}
