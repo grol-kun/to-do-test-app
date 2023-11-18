@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { CookieService } from 'ngx-cookie-service';
 
@@ -15,8 +15,6 @@ const ADMIN = 'admin';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-
   constructor(
     private router: Router,
     private cookieService: CookieService,
@@ -28,14 +26,6 @@ export class AuthService {
         ? { jwt: 'TOKEN$$$' }
         : { error: 'Incorrect credentials' }
     );
-  }
-
-  public setAuthenticated(): void {
-    this.isAuthenticatedSubject.next(true);
-  }
-
-  public setUnAuthenticated(): void {
-    this.isAuthenticatedSubject.next(false);
   }
 
   public setTokenToCookies(token: string): void {
@@ -52,19 +42,11 @@ export class AuthService {
     this.cookieService.delete(TOKEN_NAME);
   }
 
-  public setTokenIfAvailable(): void {
-    const potentialToken = this.getTokenFromCookies();
-    if (potentialToken) {
-      this.setAuthenticated();
-    }
-  }
-
   public isAuthenticated(): Observable<boolean> {
-    return this.isAuthenticatedSubject.asObservable();
+    return of(!!this.getTokenFromCookies());
   }
 
   public logout(): void {
-    this.setUnAuthenticated();
     this.deleteTokenFromCookies();
     this.router.navigate(['/login']);
   }

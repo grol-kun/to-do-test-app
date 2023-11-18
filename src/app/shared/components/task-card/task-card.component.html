@@ -1,7 +1,7 @@
 <ng-container class="container">
   @if(task) {
     <h5 class="card-title">{{ task.name }}</h5>
-    <p class="card-text">Дата выполнения: {{ task.dueDate | date:'dd.MM.yyyy' }}</p>
+    <p class="card-text">Дата выполнения: {{ task.dueDate | date : "dd.MM.yyyy" }}
     <div class="form-check">
       <input type="checkbox" class="form-check-input" [checked]="task.completed" (click)="changeStatus(task.id)" />
       <label class="form-check-label">{{ task.completed ? "Выполнено" : "В процессе" }}</label>
