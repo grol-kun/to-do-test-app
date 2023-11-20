@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Task } from '../../models/interfaces/task.model';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
+
+import { Task } from '../../models/interfaces/task.model';
 
 
 @Component({
