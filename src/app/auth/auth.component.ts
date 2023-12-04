@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,6 +13,7 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./auth.component.scss'],
   standalone: true,
   imports: [ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent implements OnInit {
   public form!: FormGroup;
@@ -30,12 +31,11 @@ export class AuthComponent implements OnInit {
     this.form = this.fb.group({
       identifier: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      remember: [false],
     });
   }
 
   public onAuthSubmit(): void {
-    const { identifier, password, remember } = this.form.getRawValue();
+    const { identifier, password } = this.form.getRawValue();
 
     this.authService
       .login({ identifier, password })
