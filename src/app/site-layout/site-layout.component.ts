@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +17,7 @@ import { FilterType } from '../shared/models/enums/filter-type.enum';
     FontAwesomeModule,
     HomeComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SiteLayoutComponent {
   public collapsed = false;

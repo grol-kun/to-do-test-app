@@ -1,4 +1,4 @@
-export interface loginInfo {
+export interface LoginInfo {
   identifier: string;
   password: string;
 }

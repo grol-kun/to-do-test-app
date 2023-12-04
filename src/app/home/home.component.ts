@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { TaskCardComponent } from '../shared/components/task-card/task-card.component';
@@ -21,6 +21,7 @@ import { FilterType } from '../shared/models/enums/filter-type.enum';
     TaskFilterPipe,
   ],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   @Input() filterType: FilterType | null = null;
@@ -56,7 +57,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public deleteTask(index: number): void {
+  public deleteTask(id: number): void {
+    const index = this.tasks.findIndex((item) => item.id === id);
     this.tasks.splice(index, 1);
     this.saveTasks(this.tasks);
   }

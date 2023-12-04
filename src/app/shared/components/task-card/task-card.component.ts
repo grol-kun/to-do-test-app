@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { Task } from '../../models/interfaces/task.model';
@@ -10,6 +10,7 @@ import { Task } from '../../models/interfaces/task.model';
   styleUrls: ['./task-card.component.scss'],
   standalone: true,
   imports: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCardComponent {
   @Input() task: Task | null = null;

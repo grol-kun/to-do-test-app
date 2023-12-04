@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 
 import { CookieService } from 'ngx-cookie-service';
 
-import { loginInfo } from '../models/interfaces/login-info.model';
+import { LoginInfo } from '../models/interfaces/login-info.model';
 import { AuthorizationResponse } from '../models/interfaces/authorization-response.model';
 import { TOKEN_NAME } from '../models/constants/app.constant';
 
@@ -20,7 +20,7 @@ export class AuthService {
     private cookieService: CookieService,
   ) {}
 
-  public login(userData: loginInfo): Observable<AuthorizationResponse> {
+  public login(userData: LoginInfo): Observable<AuthorizationResponse> {
     return of(
       userData.identifier === ADMIN && userData.password === ADMIN
         ? { jwt: 'TOKEN$$$' }
