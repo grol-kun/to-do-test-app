@@ -24,12 +24,12 @@ import { FilterType } from '../shared/models/enums/filter-type.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  @Input() filterType: FilterType | null = null;
+  @Input() public filterType: FilterType | null = null;
 
-  taskForm!: FormGroup;
+  public taskForm!: FormGroup;
 
-  tasks: Task[] = [];
-  minDate: string = new Date().toISOString().split('T')[0];
+  public tasks: Task[] = [];
+  public minDate: string = new Date().toISOString().split('T')[0];
 
   constructor(
     private fb: FormBuilder,
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.tasks = this.storage.getItem(TASKS_KEY);
+    this.tasks = this.storage.getItem(TASKS_KEY) ?? [];
 
     this.taskForm = this.fb.group({
       newTask: ['', Validators.required],

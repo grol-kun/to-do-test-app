@@ -13,10 +13,9 @@ import { Task } from '../../models/interfaces/task.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCardComponent {
-  @Input() task: Task | null = null;
-  @Input() index: number | null = null;
+  @Input() public task: Task | null = null;
 
-  @Output() statusChanged = new EventEmitter<number>();
+  @Output() private statusChanged = new EventEmitter<number>();
 
   public changeStatus(id: number): void {
     this.statusChanged.next(id);

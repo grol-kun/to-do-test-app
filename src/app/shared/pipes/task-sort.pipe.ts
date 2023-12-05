@@ -8,7 +8,7 @@ import { SortedTasks } from '../models/interfaces/sorted-tasks.model';
   standalone: true,
 })
 export class TaskSortPipe implements PipeTransform {
-  transform(tasks: Task[], minDate: string): SortedTasks {
+  public transform(tasks: Task[], minDate: string): SortedTasks {
     const today = new Date(minDate);
 
     const result = tasks?.reduce(

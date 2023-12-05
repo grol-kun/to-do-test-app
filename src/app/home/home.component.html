@@ -11,7 +11,7 @@
   @for(task of tasks | taskSort: minDate | taskFilter: filterType; track task.id) {
   <div class="card mb-3">
     <div class="card-body row g-3">
-      <app-task-card [task]="task" [index]="$index" (statusChanged)="changeStatus($event)"></app-task-card>
+      <app-task-card [task]="task" (statusChanged)="changeStatus($event)"></app-task-card>
       <button class="btn btn-danger mt-3" (click)="deleteTask(task.id)">Удалить</button>
     </div>
   </div>

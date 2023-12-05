@@ -9,7 +9,7 @@ import { FilterType } from '../models/enums/filter-type.enum';
   standalone: true,
 })
 export class TaskFilterPipe implements PipeTransform {
-  transform(sortedTasks: SortedTasks, filterType: FilterType | null): Task[] {
+  public transform(sortedTasks: SortedTasks, filterType: FilterType | null): Task[] {
     const { expired, inprogress, completed } = sortedTasks;
 
     switch(filterType) {
