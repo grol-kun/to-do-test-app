@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.tasks = this.storage.getItem(TASKS_KEY);
+    this.tasks = this.storage.getItem(TASKS_KEY) ?? [];
 
     this.taskForm = this.fb.group({
       newTask: ['', Validators.required],
