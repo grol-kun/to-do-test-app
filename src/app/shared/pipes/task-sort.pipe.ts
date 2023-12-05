@@ -11,7 +11,7 @@ export class TaskSortPipe implements PipeTransform {
   transform(tasks: Task[], minDate: string): SortedTasks {
     const today = new Date(minDate);
 
-    const result = tasks.reduce(
+    const result = tasks?.reduce(
       (acc: SortedTasks, task) => {
         if (!task.completed && new Date(task.dueDate) < today) {
           acc.expired.push(task);
@@ -23,9 +23,9 @@ export class TaskSortPipe implements PipeTransform {
         return acc;
       },
       { expired: [], inprogress: [], completed: [] }
-    );
+    ) || {};
 
-    const { expired, inprogress, completed } = result;
+    const { expired = [], inprogress = [], completed = [] } = result;
     const dateSort = (a: Task, b: Task) => +new Date(a.dueDate) - +new Date(b.dueDate);
 
     return {

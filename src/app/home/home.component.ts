@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
 
     this.taskForm = this.fb.group({
       newTask: ['', Validators.required],
-      completed: [false],
       dueDate: this.minDate,
     });
   }
