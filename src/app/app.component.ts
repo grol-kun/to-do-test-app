@@ -18,5 +18,5 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'to-do-test-app';
+  public title = 'to-do-test-app';
 }
